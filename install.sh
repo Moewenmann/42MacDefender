@@ -1,5 +1,6 @@
 #!/bin/bash
 
+mkdir ~/MacDefender
 curl https://github.com/Moewenmann/42MacDefender/blob/main/macdefender.sh > ~/MacDefender/macdefender.sh
 chmod +x ~/MacDefender/macdefender.sh
 cat <<EOT >> ~/.zshrc

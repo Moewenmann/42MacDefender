@@ -3,9 +3,9 @@
 MAC_DEFNDR_STATE="active"
 #hash_pw=$(cat password_hash.txt)
 hash_pw=$"fdd097c328b858dcb0838fc2f712a2bd668366a5  -"
-mdf_dir="~/MacDefender/"
-mdf_file="~/MacDefender/macdefender.sh"
-zshrc_file="~/.zshrc"
+mdf_dir="$HOME/MacDefender/"
+mdf_file="$HOME/MacDefender/macdefender.sh"
+zshrc_file="$HOME/.zshrc"
 #zshrc_file="$HOME/.bashrc"
 
 if [ ! -f "$zshrc_file" ]; then
