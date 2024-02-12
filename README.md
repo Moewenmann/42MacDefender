@@ -15,7 +15,7 @@ chmod +x install.sh
 ```
 
 **Customization:**
-The default password is "42," but you can personalize it by editing the `.zshrc` file.
+The default password is "42" but you can personalize it by editing the `.zshrc` file.
 
 To generate a new password, use the following command and replace `MDFPASS="{replace}"` in `.zshrc` with the output:
 ```
