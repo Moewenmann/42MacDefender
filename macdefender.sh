@@ -2,7 +2,7 @@
 
 MAC_DEFNDR_STATE="active"
 #hash_pw=$(cat password_hash.txt)
-hash_pw=$"fdd097c328b858dcb0838fc2f712a2bd668366a5  -"
+hash_pw=$"92cfceb39d57d914ed8b14d0e37643de0797ae56  -"
 mdf_dir="$HOME/MacDefender/"
 mdf_file="$HOME/MacDefender/macdefender.sh"
 zshrc_file="$HOME/.zshrc"
@@ -18,12 +18,15 @@ if [ -r "$zshrc_file" ]; then
 	if [ -n "$macdefender_ln" ]; then
 		MAC_DEFNDR_STATE=$(echo "$macdefender_ln" | sed 's/.*MACDEFENDER="\([^"]*\)".*/\1/')
 	fi
+	mdfpass_ln=$(grep "MDFPASS=" "$zshrc_file")
+	if [ -n "$mdfpass_ln" ]; then
+		hash_pw=$(echo "$mdfpass_ln" | sed 's/.*MDFPASS="\([^"]*\)".*/\1/')
+	fi
 fi
 
 lock_terminal() {
 	trap '' SIGINT SIGQUIT SIGTSTP
 	while [ "$MAC_DEFNDR_STATE" = "active" ]; do
-		chmod -w $mdf_file
 		printf "\e[37m[\e[36mMacDefender\e[37m] Please unlock terminal: \e[0m"
 		read -s -p "" user_input
 		echo ""
@@ -31,8 +34,7 @@ lock_terminal() {
 
 		if [ "$user_input_hash" = "$hash_pw" ]; then
 			clear
-			chmod +w $mdf_file
-			printf "\e[37m[\e[36mMacDefender\e[37m] Terminal unlocked!"
+			printf "\e[37m[\e[36mMacDefender\e[37m] Terminal unlocked!\e[0m\n"
 			MAC_DEFNDR_STATE="inactive"
 			break
 		else
