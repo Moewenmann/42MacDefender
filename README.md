@@ -8,19 +8,26 @@ It's important to note that MacDefender doesn't guarantee absolute protection ag
 
 **Install:**
 ```
-chmod +x install.sh
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Moewenmann/42MacDefender/main/install.sh)"
 ```
-```
-./install.sh
-```
+
+**ConfigShield:**
+
+Every time a terminal is started, ConfigShield is also executed.
+ConfigShield searches for patterns from the `config.scanlist` in `.zshrc` and warns about matches or changes to the file.
 
 **Customization:**
-The default password is "42" but you can personalize it by editing the `.zshrc` file.
 
+The default password is "42" but you can personalize it by editing the `.zshrc` file.
 To generate a new password, use the following command and replace `MDFPASS="{replace}"` in `.zshrc` with the output:
 ```
 printf "{Custom Password}" | shasum
 ```
+You can adjust the behavior of the ConfigShield with the following variables in `configshield.sh`:
+- `SHIELD_MODE`: Defines the mode of the script. Possible values are "remove", "ask", "warn" and "off".
+- `SHIELD_RUN_NOTIFY`: If set to "true", the script notifies the user after a successful scan.
+
+The `config.scanlist` file contains the list of signatures that the script searches for. The installer inserts a standard set of signatures.
 
 **Usage:**
 - To toggle MacDefender on or off, use:
